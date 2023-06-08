@@ -14,7 +14,7 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
-  - [🚀 Live Demo](#live-demo)
+  <!-- - [🚀 Live Demo](#live-demo) -->
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -57,9 +57,8 @@
 
 <!-- LIVE DEMO -->
 
-## 🚀 Live Demo <a name="live-demo"></a>
+<!-- ## 🚀 Live Demo <a name="live-demo"></a> -->
 
-- [Live Demo Link]()
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -128,7 +127,7 @@ To use them, execute the following command:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- **Add Account System**
+- **Add Animations**
 - **Add Account System**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
