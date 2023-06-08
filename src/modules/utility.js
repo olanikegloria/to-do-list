@@ -82,11 +82,14 @@ export const renderTasks = (listInstance) => {
   tasks.addEventListener('click', (event) => {
     const trashBox = event.target.closest('.fa-regular.fa-trash-can');
     if (trashBox) {
+      event.stopPropagation();
       const taskItem = event.target.closest('.task-items');
-      const itemId = parseInt(taskItem.dataset.itemId, 10);
-      listInstance.remove(itemId);
-      renderTasks(listInstance); // Pass listInstance as the argument
-      updateLocalStorage(listInstance); // Pass listInstance as the argument
+      if (taskItem) {
+        const itemId = parseInt(taskItem.dataset.itemId, 10);
+        listInstance.remove(itemId);
+        renderTasks(listInstance);
+        updateLocalStorage(listInstance);
+      }
     }
   });
 };

@@ -59,7 +59,6 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link]()
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -128,7 +127,7 @@ To use them, execute the following command:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- **Add Account System**
+- **Add Animations**
 - **Add Account System**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
