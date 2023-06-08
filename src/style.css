@@ -40,7 +40,8 @@
   border-bottom: 1.8px solid gainsboro;
 }
 
-input {
+.activities,
+.enter-text {
   width: 100%;
   border: none;
   outline: none;
@@ -61,13 +62,9 @@ ul li {
   justify-content: center;
 }
 
-.task-list span {
+.unchecked,
+.activities {
   padding-right: 0.5rem;
-}
-
-.task-list span i {
-  font-size: 1.5em;
-  color: gainsboro;
 }
 
 .footer {
@@ -77,7 +74,7 @@ ul li {
   padding: 1.5rem;
 }
 
-.checked {
+.line {
   text-decoration: line-through;
 }
 
