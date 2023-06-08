@@ -81,10 +81,7 @@ ul li {
   text-decoration: line-through;
 }
 
-.delete {
-  background-color: beige;
-}
-
+.delete,
 .delete input {
   background-color: beige;
 }
