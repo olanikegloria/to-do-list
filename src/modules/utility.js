@@ -22,8 +22,8 @@ const tasks = document.querySelector('.tasks');
 export const renderTasks = (listInstance) => {
   const mappedLists = listInstance.lists.map((item) => `<li class="task-items" data-item-id="${item.id}">
             <div class="task-list checked">
-                <input class="unchecked" type="checkbox">
-                <input class="activities" type="text" value="${item.description}" >
+                <input class="unchecked" type="checkbox" ${item.completed === true ? 'checked' : ''}>
+                <input class='activities ${item.completed === true ? 'line' : ''}' type="text" value="${item.description}">
             </div>
             <div class="dot-hover">
                 <svg class="three-dot" fill="#000000" width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="17.5" r="1.5" /><circle cx="12" cy="12" r="1.5" /><circle cx="12" cy="6.5" r="1.5" /></svg>
@@ -31,6 +31,7 @@ export const renderTasks = (listInstance) => {
         </li>`);
 
   tasks.innerHTML = mappedLists.join('');
+
   const taskItems = document.querySelectorAll('.task-items');
 
   taskItems.forEach((item) => {
@@ -69,11 +70,10 @@ export const renderTasks = (listInstance) => {
 
   uncheckedItems.forEach((unchecked) => {
     unchecked.addEventListener('change', (event) => {
-      const checked = event.target.closest('.checked');
       const taskItem = event.target.closest('.task-items');
       const itemId = parseInt(taskItem.dataset.itemId, 10);
       updateList(listInstance.lists, itemId);
-      checked.classList.toggle('line');
+      renderTasks(listInstance);
       updateLocalStorage(listInstance); // Pass listInstance as the argument
     });
   });
