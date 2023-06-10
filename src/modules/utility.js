@@ -1,3 +1,5 @@
+import updateList from './update.js';
+
 export default class ListStore {
   constructor() {
     this.lists = [];
@@ -18,21 +20,18 @@ export const updateLocalStorage = (newListStore) => {
 
 const tasks = document.querySelector('.tasks');
 export const renderTasks = (listInstance) => {
-  const mappedLists = listInstance.lists.map((item) => {
-    const trashBox = item.completed ? '<i class="fa-regular fa-trash-can trash-box"></i>' : '';
-    return `<li class="task-items" data-item-id="${item.id}">
-            <div class="task-list">
-                <span><i class="fa-regular fa-square unchecked"></i></span>
-                <input class="activities" type="text" value="${item.description}" >
+  const mappedLists = listInstance.lists.map((item) => `<li class="task-items" data-item-id="${item.id}">
+            <div class="task-list checked">
+                <input class="unchecked" type="checkbox" ${item.completed === true ? 'checked' : ''}>
+                <input class='activities ${item.completed === true ? 'line' : ''}' type="text" value="${item.description}">
             </div>
             <div class="dot-hover">
-                ${trashBox}
-                ${item.completed ? '' : '<svg class="three-dot" fill="#000000" width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="17.5" r="1.5" /><circle cx="12" cy="12" r="1.5" /><circle cx="12" cy="6.5" r="1.5" /></svg>'}
+                <svg class="three-dot" fill="#000000" width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="17.5" r="1.5" /><circle cx="12" cy="12" r="1.5" /><circle cx="12" cy="6.5" r="1.5" /></svg>
             </div>
-        </li>`;
-  });
+        </li>`);
 
   tasks.innerHTML = mappedLists.join('');
+
   const taskItems = document.querySelectorAll('.task-items');
 
   taskItems.forEach((item) => {
@@ -70,13 +69,20 @@ export const renderTasks = (listInstance) => {
   const uncheckedItems = document.querySelectorAll('.unchecked');
 
   uncheckedItems.forEach((unchecked) => {
-    unchecked.addEventListener('click', (event) => {
-      unchecked.completed = true;
-      unchecked.classList.toggle('fa-solid');
-      unchecked.classList.toggle('fa-check');
-      event.target.closest('.task-list').classList.toggle('checked');
+    unchecked.addEventListener('change', (event) => {
+      const taskItem = event.target.closest('.task-items');
+      const itemId = parseInt(taskItem.dataset.itemId, 10);
+      updateList(listInstance.lists, itemId);
+      renderTasks(listInstance);
       updateLocalStorage(listInstance); // Pass listInstance as the argument
     });
+  });
+
+  const clearAll = document.querySelector('.clear-all');
+  clearAll.addEventListener('click', () => {
+    listInstance.lists = listInstance.lists.filter((item) => item.completed === false);
+    renderTasks(listInstance);
+    updateLocalStorage(listInstance);
   });
 
   tasks.addEventListener('click', (event) => {
